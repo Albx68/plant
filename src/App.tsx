@@ -1,44 +1,168 @@
+import { useState } from "react";
 import "./App.css";
 
+const defaultFlower = {
+  name: "Sunflower",
+  radius: 50,
+  petalCount: 6,
+  petalHeight: 90,
+  petalColor: "#ff3865",
+  baseColor: "#dffddf",
+};
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+  const [newFlower, setNewFlower] = useState(defaultFlower);
+
+  const [flowerData, setFlowerData] = useState([
+    {
+      name: "Sunflower",
+      radius: 50,
+      petalCount: 6,
+      petalHeight: 90,
+      petalColor: "red",
+      baseColor: "yellow",
+    },
+  ]);
+
+  const handleAddFlower = () => {
+    if (newFlower.petalColor && newFlower.baseColor && newFlower.petalCount) {
+      setFlowerData([
+        ...flowerData,
+        {
+          ...newFlower,
+          name: `Custom Flower ${flowerData.length + 1}`,
+          radius: 50,
+          petalHeight: 90,
+        },
+      ]);
+      setNewFlower({
+        petalColor: "",
+        baseColor: "",
+        petalCount: 6,
+      });
+    } else {
+      alert("Please select all options!");
+    }
+  };
+  const handleOptionSelect = (
+    field: "petalColor" | "baseColor" | "petalCount",
+    value: string | number
+  ) => {
+    setNewFlower({ ...newFlower, [field]: value });
+  };
   return (
     <>
       <div className="">
         {flowerData?.map((flower) => (
           <CreateFlower {...flower} />
         ))}
+        <div>
+          <button onClick={toggleSidebar}>Plant 🌸 </button>
+        </div>
+        {/* <button
+          onClick={toggleSidebar}
+          className="fixed top-4 right-4 px-4 py-2 bg-blue-500 text-white rounded shadow-md hover:bg-blue-600 transition"
+        >
+          {isOpen ? "Close Sidebar" : "Open Sidebar"}
+        </button> */}
+        {/* Overlay */}
+
+        {/* Sidebar */}
+
+        <div
+          className={`fixed top-0 z-50 right-0 h-full w-1/4 bg-neutral-900 text-white transform ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300 shadow-lg`}
+        >
+          <div className="p-4 flex justify-center">
+            <div className="flex gap-6 flex-col">
+              <h2>Create a New Flower</h2>
+              <CreateFlower radius={50} petalHeight={90} {...newFlower} />
+              {/* Petal Color Options */}
+              <h3>Petal Color</h3>
+              <div style={{ display: "flex", gap: "10px" }}>
+                {["lavender", "red", "yellow", "pink"].map((color) => (
+                  <div
+                    key={color}
+                    style={{
+                      padding: "10px",
+                      border:
+                        newFlower.petalColor === color
+                          ? "2px solid black"
+                          : "1px solid gray",
+                      cursor: "pointer",
+                      backgroundColor: color,
+                    }}
+                    onClick={() => handleOptionSelect("petalColor", color)}
+                  >
+                    {color}
+                  </div>
+                ))}
+              </div>
+
+              {/* Base Color Options */}
+              <h3>Base Color</h3>
+              <div style={{ display: "flex", gap: "10px" }}>
+                {["blue", "yellow", "orange", "green"].map((color) => (
+                  <div
+                    key={color}
+                    style={{
+                      padding: "10px",
+                      border:
+                        newFlower.baseColor === color
+                          ? "2px solid black"
+                          : "1px solid gray",
+                      cursor: "pointer",
+                      backgroundColor: color,
+                    }}
+                    onClick={() => handleOptionSelect("baseColor", color)}
+                  >
+                    {color}
+                  </div>
+                ))}
+              </div>
+
+              {/* Petal Count Options */}
+              <h3>Petal Count</h3>
+              <div style={{ display: "flex", gap: "10px" }}>
+                {[6, 8, 10, 12].map((count) => (
+                  <div
+                    key={count}
+                    style={{
+                      padding: "10px",
+                      border:
+                        newFlower.petalCount === count
+                          ? "2px solid black"
+                          : "1px solid gray",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleOptionSelect("petalCount", count)}
+                  >
+                    {count} petals
+                  </div>
+                ))}
+              </div>
+
+              <button style={{ marginTop: "20px" }} onClick={handleAddFlower}>
+                Add Flower
+              </button>
+            </div>
+          </div>
+        </div>
+        {isOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            onClick={toggleSidebar}
+          ></div>
+        )}
       </div>
     </>
   );
 }
-
-const flowerData = [
-  {
-    name: "Rose",
-    radius: 50,
-    petalCount: 6,
-    petalHeight: 90,
-    petalColor: "lavender",
-    baseColor: "blue",
-  },
-  {
-    name: "Sunflower",
-    radius: 50,
-    petalCount: 6,
-    petalHeight: 90,
-    petalColor: "red",
-    baseColor: "yellow",
-  },
-
-  {
-    name: "Tulip",
-    radius: 50,
-    petalCount: 6,
-    petalHeight: 90,
-    petalColor: "yellow",
-    baseColor: "orange",
-  },
-];
 
 export default App;
 
