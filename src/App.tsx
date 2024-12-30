@@ -29,14 +29,7 @@ const flowerData = [
     petalColor: "red",
     baseColor: "yellow",
   },
-  {
-    name: "Lily",
-    radius: 50,
-    petalCount: 6,
-    petalHeight: 90,
-    petalColor: "blue",
-    baseColor: "purple",
-  },
+
   {
     name: "Tulip",
     radius: 50,
