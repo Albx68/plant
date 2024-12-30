@@ -4,17 +4,48 @@ function App() {
   return (
     <>
       <div className="">
-        <CreateFlower
-          radius={50}
-          petalCount={6}
-          petalHeight={90}
-          petalColor="red"
-          baseColor="yellow"
-        />
+        {flowerData?.map((flower) => (
+          <CreateFlower {...flower} />
+        ))}
       </div>
     </>
   );
 }
+
+const flowerData = [
+  {
+    name: "Rose",
+    radius: 50,
+    petalCount: 6,
+    petalHeight: 90,
+    petalColor: "lavender",
+    baseColor: "blue",
+  },
+  {
+    name: "Sunflower",
+    radius: 50,
+    petalCount: 6,
+    petalHeight: 90,
+    petalColor: "red",
+    baseColor: "yellow",
+  },
+  {
+    name: "Lily",
+    radius: 50,
+    petalCount: 6,
+    petalHeight: 90,
+    petalColor: "blue",
+    baseColor: "purple",
+  },
+  {
+    name: "Tulip",
+    radius: 50,
+    petalCount: 6,
+    petalHeight: 90,
+    petalColor: "yellow",
+    baseColor: "orange",
+  },
+];
 
 export default App;
 
@@ -41,7 +72,8 @@ const CreateFlower = ({
     radius,
     petalCount,
     height,
-    width
+    width,
+    1.5
   );
   return (
     <svg width={width} height={height}>
@@ -91,15 +123,22 @@ const calculateEllipsesAroundCircle = (
   radius: number,
   ellipseCount: number,
   svgWidth: number,
-  svgHeight: number
+  svgHeight: number,
+  petalOffset: number //this will offset petal distance from center, higher the number, less distance from center
 ) => {
   // Dynamically calculate ellipse radii based on number of petals and SVG size
   const maxRadiusX = svgWidth / 2 - 10; // Leave some margin
   const maxRadiusY = svgHeight / 2 - 10; // Leave some margin
 
   // Calculate ellipse size based on number of petals, ensuring they fit in the SVG container
-  const ellipseRx = Math.min(maxRadiusX / Math.sqrt(ellipseCount), radius / 2); // Scale by number of petals and radius
-  const ellipseRy = Math.min(maxRadiusY / Math.sqrt(ellipseCount), radius / 2);
+  const ellipseRx = Math.min(
+    maxRadiusX / Math.sqrt(ellipseCount),
+    radius / petalOffset
+  ); // Scale by number of petals and radius
+  const ellipseRy = Math.min(
+    maxRadiusY / Math.sqrt(ellipseCount),
+    radius / petalOffset
+  );
 
   const ellipses: { cx: number; cy: number; rx: number; ry: number }[] = [];
   const angleStep = (2 * Math.PI) / ellipseCount; // Divide the circle into equal parts
