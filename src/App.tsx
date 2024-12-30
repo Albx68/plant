@@ -85,37 +85,37 @@ const CreateFlower = ({
   );
 };
 
-type Line = {
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
-};
+// type Line = {
+//   x1: number;
+//   y1: number;
+//   x2: number;
+//   y2: number;
+// };
 
-const calculateLinesAroundCircle = (
-  centerX: number,
-  centerY: number,
-  radius: number,
-  lineCount: number
-): Line[] => {
-  const lineMargin = radius * 0.2;
-  const lines: Line[] = [];
-  const angleStep = (2 * Math.PI) / lineCount; // Divide the circle into equal parts
+// const calculateLinesAroundCircle = (
+//   centerX: number,
+//   centerY: number,
+//   radius: number,
+//   lineCount: number
+// ): Line[] => {
+//   const lineMargin = radius * 0.2;
+//   const lines: Line[] = [];
+//   const angleStep = (2 * Math.PI) / lineCount; // Divide the circle into equal parts
 
-  for (let i = 0; i < lineCount; i++) {
-    const angle = angleStep * i;
+//   for (let i = 0; i < lineCount; i++) {
+//     const angle = angleStep * i;
 
-    const x1 = centerX + (radius + lineMargin) * Math.cos(angle);
-    const y1 = centerY + (radius + lineMargin) * Math.sin(angle);
+//     const x1 = centerX + (radius + lineMargin) * Math.cos(angle);
+//     const y1 = centerY + (radius + lineMargin) * Math.sin(angle);
 
-    const x2 = centerX + (radius + lineMargin + 20) * Math.cos(angle);
-    const y2 = centerY + (radius + lineMargin + 20) * Math.sin(angle);
+//     const x2 = centerX + (radius + lineMargin + 20) * Math.cos(angle);
+//     const y2 = centerY + (radius + lineMargin + 20) * Math.sin(angle);
 
-    lines.push({ x1, y1, x2, y2 });
-  }
+//     lines.push({ x1, y1, x2, y2 });
+//   }
 
-  return lines;
-};
+//   return lines;
+// };
 
 const calculateEllipsesAroundCircle = (
   centerX: number,
