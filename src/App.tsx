@@ -39,11 +39,7 @@ function App() {
           petalHeight: 90,
         },
       ]);
-      setNewFlower({
-        petalColor: "",
-        baseColor: "",
-        petalCount: 6,
-      });
+      setNewFlower(defaultFlower);
     } else {
       alert("Please select all options!");
     }
@@ -81,7 +77,7 @@ function App() {
           <div className="p-4 flex justify-center">
             <div className="flex gap-6 flex-col">
               <h2>Create a New Flower</h2>
-              <CreateFlower radius={50} petalHeight={90} {...newFlower} />
+              <CreateFlower {...newFlower} />
               {/* Petal Color Options */}
               <h3>Petal Color</h3>
               <div style={{ display: "flex", gap: "10px" }}>
