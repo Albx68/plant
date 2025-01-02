@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { ImagePixelated, ElementPixelated } from "react-pixelate";
+
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 const defaultFlower = {
@@ -56,6 +58,7 @@ function App() {
         {flowerData?.map((flower) => (
           <CreateFlower {...flower} />
         ))}
+
         <div>
           <button onClick={toggleSidebar}>Plant 🌸 </button>
         </div>
@@ -189,12 +192,29 @@ const CreateFlower = ({
     1.5
   );
   return (
-    <svg width={width} height={height}>
-      {ellipses.map((ellipse, index) => {
-        return <ellipse key={index} {...ellipse} fill={petalColor} />;
-      })}
-      <circle cx={cx} cy={cy} r={radius} fill={baseColor} />
-    </svg>
+    <PixelatedSVG
+      ellipses={ellipses}
+      petalColor={petalColor}
+      cx={cx}
+      cy={cy}
+      radius={radius}
+      baseColor={baseColor}
+      width={width}
+      height={height}
+    />
+    // <div className="">
+    //   <svg
+    //     imageRendering={"pixelated"}
+    //     width={width}
+    //     className=""
+    //     height={height}
+    //   >
+    //     {ellipses.map((ellipse, index) => {
+    //       return <ellipse key={index} {...ellipse} fill={petalColor} />;
+    //     })}
+    //     <circle cx={cx} cy={cy} r={radius} fill={baseColor} />
+    //   </svg>
+    // </div>
   );
 };
 
@@ -271,4 +291,72 @@ const calculateEllipsesAroundCircle = (
   }
 
   return ellipses;
+};
+
+const PixelatedSVG = ({
+  ellipses,
+  petalColor,
+  cx,
+  cy,
+  radius,
+  baseColor,
+  width,
+  height,
+}) => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    const svgContent = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+        ${ellipses
+          .map(
+            (ellipse) =>
+              `<ellipse cx="${ellipse.cx}" cy="${ellipse.cy}" rx="${ellipse.rx}" ry="${ellipse.ry}" fill="${petalColor}" />`
+          )
+          .join("")}
+        <circle cx="${cx}" cy="${cy}" r="${radius}" fill="${baseColor}" />
+      </svg>
+    `;
+
+    const svgBlob = new Blob([svgContent], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    img.src = url;
+
+    img.onload = () => {
+      // Draw SVG on canvas
+      canvas.width = width;
+      canvas.height = height;
+
+      const scaledWidth = Math.ceil(width / 12); // Adjust scale factor
+      const scaledHeight = Math.ceil(height / 12);
+
+      const offscreenCanvas = document.createElement("canvas");
+      offscreenCanvas.width = scaledWidth;
+      offscreenCanvas.height = scaledHeight;
+      const offscreenCtx = offscreenCanvas.getContext("2d");
+
+      offscreenCtx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
+
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(
+        offscreenCanvas,
+        0,
+        0,
+        scaledWidth,
+        scaledHeight,
+        0,
+        0,
+        width,
+        height
+      );
+
+      URL.revokeObjectURL(url); // Cleanup
+    };
+  }, [ellipses, petalColor, cx, cy, radius, baseColor, width, height]);
+
+  return <canvas ref={canvasRef} style={{ width: "100%", height: "auto" }} />;
 };
