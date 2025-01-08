@@ -12,7 +12,15 @@ const Flower = ({
   const width = radius * 2 + petalHeight * 2;
   const cx = width / 2;
   const cy = height / 2;
-  const ellipses = getEllipses(cx, cy, radius, petalCount, height, width, 1.5);
+  const ellipses = getEllipses({
+    centerX: cx,
+    centerY: cy,
+    radius,
+    ellipseCount: petalCount,
+    svgHeight: height,
+    svgWidth: width,
+    petalOffset: 1.5,
+  });
   return (
     <svg width={width} height={height}>
       {ellipses.map((ellipse, index) => {

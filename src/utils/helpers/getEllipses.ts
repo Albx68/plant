@@ -1,12 +1,24 @@
-export const getEllipses = (
-  centerX: number,
-  centerY: number,
-  radius: number,
-  ellipseCount: number,
-  svgWidth: number,
-  svgHeight: number,
-  petalOffset: number //this will offset petal distance from center, higher the number, less distance from center
-) => {
+interface IGetEllipses {
+  centerX: number;
+  centerY: number;
+  radius: number;
+  ellipseCount: number;
+  svgWidth: number;
+  svgHeight: number;
+  petalOffset?: number;
+}
+
+export const getEllipses = ({
+  centerX,
+  centerY,
+  radius,
+  ellipseCount,
+  svgWidth,
+  svgHeight,
+  petalOffset = 1.5,
+}: IGetEllipses) => {
+  //this will offset petal distance from center, higher the number, less distance from center
+
   // Dynamically calculate ellipse radii based on number of petals and SVG size
   const maxRadiusX = svgWidth / 2 - 10; // Leave some margin
   const maxRadiusY = svgHeight / 2 - 10; // Leave some margin
