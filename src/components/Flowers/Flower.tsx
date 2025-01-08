@@ -6,9 +6,12 @@ const DefaultFlower = ({
   petalHeight,
   petalColor = "pink",
   strokeColor = "black",
+  baseStrokeColor = "black",
   baseColor = "yellow",
   petalType = "flower",
+  baseRadiusFactor = 4, //higher number = smaller radius
 }: TFlower) => {
+  const pad = 20;
   const angleStep = 360 / petalCount; // Angle between petals
 
   // Generate the path for a single petal
@@ -17,9 +20,9 @@ const DefaultFlower = ({
     <svg
       width={petalHeight * 2}
       height={petalHeight * 2}
-      viewBox={`${-petalHeight} ${-petalHeight} ${petalHeight * 2} ${
-        petalHeight * 2
-      }`}
+      viewBox={`${-petalHeight - pad} ${-petalHeight - pad} ${
+        petalHeight * 2 + pad * 2
+      } ${petalHeight * 2 + pad * 2}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       {Array.from({ length: petalCount }).map((_, index) => (
@@ -39,9 +42,9 @@ const DefaultFlower = ({
       <circle
         cx="0"
         cy="0"
-        r={petalHeight / 4}
+        r={petalHeight / baseRadiusFactor}
         fill={baseColor}
-        stroke="black"
+        stroke={baseStrokeColor}
         strokeWidth="4"
       />
     </svg>

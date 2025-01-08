@@ -5,6 +5,9 @@ export type TFlower = {
   petalHeight: number;
   petalColor?: string;
   strokeColor?: string;
+  baseStrokeColor?: string;
+
   baseColor?: string;
   petalType?: TPetal;
+  baseRadiusFactor?: number;
 };
