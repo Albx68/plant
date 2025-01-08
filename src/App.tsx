@@ -1,22 +1,21 @@
 import "./App.css";
 import Flower from "./components/Flowers/Flower";
+import { TFlower } from "./utils/types/Flower";
 
 const defaultFlower = {
-  name: "Sunflower",
   radius: 50,
   petalCount: 6,
-  petalHeight: 90,
+  petalHeight: 50,
   petalColor: "#ff3865",
   baseColor: "#dffddf",
 };
-const flowerData = [
+const flowerData: TFlower[] = [
   {
-    name: "Sunflower",
-    radius: 50,
-    petalCount: 6,
-    petalHeight: 90,
+    petalCount: 5,
+    petalHeight: 80,
     petalColor: "red",
     baseColor: "yellow",
+    petalType: "heart",
   },
   defaultFlower,
 ];

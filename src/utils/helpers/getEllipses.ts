@@ -15,7 +15,7 @@ export const getEllipses = ({
   ellipseCount,
   svgWidth,
   svgHeight,
-  petalOffset = 1.5,
+  petalOffset = 2,
 }: IGetEllipses) => {
   //this will offset petal distance from center, higher the number, less distance from center
 
@@ -26,11 +26,11 @@ export const getEllipses = ({
   // Calculate ellipse size based on number of petals, ensuring they fit in the SVG container
   const ellipseRx = Math.min(
     maxRadiusX / Math.sqrt(ellipseCount),
-    radius / petalOffset
+    svgHeight / petalOffset
   ); // Scale by number of petals and radius
   const ellipseRy = Math.min(
     maxRadiusY / Math.sqrt(ellipseCount),
-    radius / petalOffset
+    svgHeight / petalOffset
   );
 
   const ellipses: { cx: number; cy: number; rx: number; ry: number }[] = [];
