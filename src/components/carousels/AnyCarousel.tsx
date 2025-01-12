@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Circle } from "lucide-react";
+import { Circle, MoveLeft, MoveRight } from "lucide-react";
 import { cn } from "../../utils/helpers/cn";
-import { defineConfig } from "vite";
 
 type TAnyCarouselProps = {
   childrenArray: Array<React.ReactNode>;
@@ -15,7 +14,7 @@ type TAnyCarouselProps = {
 
 const AnyCarousel = ({
   childrenArray,
-  indicatorSize = 18,
+  indicatorSize = 14,
 }: TAnyCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const childrenArrayMap = childrenArray?.map((_, idx) => (
@@ -29,7 +28,21 @@ const AnyCarousel = ({
   return (
     <div className="flex flex-col items-center">
       <div>{childrenArray[currentIndex]}</div>
-      <div className="flex gap-1">{childrenArrayMap}</div>
+      <div className="flex gap-2 items-center">
+        {currentIndex > 0 && (
+          <MoveLeft
+            size={indicatorSize}
+            onClick={() => setCurrentIndex((prevState) => prevState - 1)}
+          />
+        )}
+        <div className="flex gap-2">{childrenArrayMap}</div>
+        {currentIndex < childrenArray.length - 1 && (
+          <MoveRight
+            size={indicatorSize}
+            onClick={() => setCurrentIndex((prevState) => prevState + 1)}
+          />
+        )}
+      </div>
     </div>
   );
 };
