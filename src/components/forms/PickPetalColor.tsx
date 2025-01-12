@@ -19,7 +19,7 @@ const PickPetalColor = ({
           color={color}
           onChange={({ h, s, l, a }) => {
             setColor({ h, s, l, a });
-            const hsl = `hsla(${h}, ${s}%, ${l}%, ${a})`;
+            const hsl = `hsla(${h}, ${s}%, ${l}%, ${0.6})`;
             setPetalColor(hsl);
           }}
         />
