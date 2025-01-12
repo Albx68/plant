@@ -2,6 +2,7 @@ import { TDataPoint } from "../../components/inputs/SingleSelect";
 import { TPetal } from "../types/Path";
 
 const PetalData: TDataPoint<TPetal>[] = [
+  { name: "heart", value: "heart" },
   { name: "ellipse", value: "ellipse" },
   { name: "tulip", value: "tulip" },
   { name: "daisy", value: "daisy" },

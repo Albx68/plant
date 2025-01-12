@@ -5,8 +5,6 @@ const DefaultFlower = ({
   petalCount,
   petalHeight,
   petalColor = "pink",
-  strokeColor = "black",
-  baseStrokeColor = "black",
   baseColor = "yellow",
   petalType = "flower",
   baseRadiusFactor = 4, //higher number = smaller radius
@@ -30,7 +28,7 @@ const DefaultFlower = ({
           key={index}
           d={path}
           fill={petalColor}
-          stroke={strokeColor}
+          stroke={"black"}
           strokeWidth="4"
           transform={`rotate(${index * angleStep})`}
           strokeLinecap="round"
@@ -44,7 +42,7 @@ const DefaultFlower = ({
         cy="0"
         r={petalHeight / baseRadiusFactor}
         fill={baseColor}
-        stroke={baseStrokeColor}
+        stroke={"black"}
         strokeWidth="4"
       />
     </svg>

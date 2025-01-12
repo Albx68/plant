@@ -9,7 +9,7 @@ const Point = ({
   return (
     <div
       className={cn(
-        "rounded-full p-2 min-w-10 min-h-10 h-10 w-10 bg-rose-200 flex justify-center items-center",
+        "font-semibold cursor-default rounded-full p-2 min-w-10 min-h-10 h-10 w-10 bg-rose-200 flex justify-center items-center border-2 border-neutral-700 ",
         props.className
       )}
       {...props}

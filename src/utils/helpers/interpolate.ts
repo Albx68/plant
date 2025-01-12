@@ -1,4 +1,4 @@
-type InterpolateConfig = {
+export type InterpolateConfig = {
   inputRange: number[];
   outputRange: number[];
   extrapolate?: "extend" | "clamp" | "identity";

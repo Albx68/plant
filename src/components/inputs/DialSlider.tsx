@@ -1,13 +1,17 @@
 import React, { useState, useRef } from "react";
-import interpolate from "../../utils/helpers/interpolate";
+import interpolate, {
+  InterpolateConfig,
+} from "../../utils/helpers/interpolate";
 import { ArrowUp } from "lucide-react";
 
 const DialSlider: React.FC = ({
   value,
   setValue,
+  transformConfig = { inputRange: [-90, 90], outputRange: [6, 18] },
 }: {
   value: string | number;
   setValue: (count: number) => void;
+  transformConfig: InterpolateConfig;
 }) => {
   const [angle, setAngle] = useState(0);
   const dialRef = useRef<HTMLDivElement>(null);
@@ -41,11 +45,7 @@ const DialSlider: React.FC = ({
       const newAngle = calculateAngle(x, y);
       setAngle(newAngle);
 
-      const newPetalCount = interpolate(Math.round(newAngle), {
-        inputRange: [-90, 90],
-        outputRange: [6, 18],
-        extrapolate: "clamp",
-      });
+      const newPetalCount = interpolate(Math.round(newAngle), transformConfig);
 
       setValue(Math.floor(newPetalCount));
     };

@@ -28,7 +28,7 @@ const AnyCarousel = ({
   return (
     <div className="flex flex-col items-center">
       <div>{childrenArray[currentIndex]}</div>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center my-4">
         {currentIndex > 0 && (
           <MoveLeft
             size={indicatorSize}

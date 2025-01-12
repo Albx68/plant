@@ -40,7 +40,7 @@ const SingleSelect = <T,>({
           }
         )}
       >
-        <div>
+        <div className="flex items-center justify-center">
           <Flower {...flowerData} />
         </div>
         <p className="absolute bottom-1 left-1/2 -translate-x-1/2">
