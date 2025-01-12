@@ -1,9 +1,12 @@
 import React, { useState, useRef } from "react";
 import interpolate from "../../utils/helpers/interpolate";
+import { ArrowUp } from "lucide-react";
 
 const DialSlider: React.FC = ({
+  value,
   setValue,
 }: {
+  value: string | number;
   setValue: (count: number) => void;
 }) => {
   const [angle, setAngle] = useState(0);
@@ -39,9 +42,9 @@ const DialSlider: React.FC = ({
       setAngle(newAngle);
 
       const newPetalCount = interpolate(Math.round(newAngle), {
-        inputRange: [0, 360],
+        inputRange: [-90, 90],
         outputRange: [6, 18],
-        extrapolate: "extend",
+        extrapolate: "clamp",
       });
 
       setValue(Math.floor(newPetalCount));
@@ -66,24 +69,23 @@ const DialSlider: React.FC = ({
 
   return (
     <div className="flex flex-col items-center justify-center cursor-pointer">
+      <p className="mt-4 text-lg font-semibold text-gray-700">{value}</p>
+      <ArrowUp />
       <div
         ref={dialRef}
         onMouseDown={handleStart}
         onTouchStart={handleStart}
-        className="w-32 h-32 rounded-full bg-blue-500 relative"
+        className="w-56 h-56 rounded-full bg-rose-200 relative border-2 border-neutral-700 "
         style={{
           transform: `rotate(${angle}deg)`,
         }}
       >
         {/* Dial pointer */}
         <div
-          className="w-1 h-8 bg-white absolute top-0 left-1/2 transform -translate-x-1/2 rounded-md"
+          className="w-[2px] h-52 bg-neutral-700 absolute top-0 left-1/2 transform -translate-x-1/2 rounded-md"
           style={{ transform: "translateX(-50%)" }}
         ></div>
       </div>
-      <p className="mt-4 text-lg font-semibold text-gray-700">
-        Angle: {Math.round(angle)}°
-      </p>
     </div>
   );
 };
