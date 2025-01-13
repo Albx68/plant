@@ -13,11 +13,12 @@ import PickPetalCount from "./PickPetalCount";
 import PickFlowerBaseColor from "./PickFlowerBaseColor";
 import PickBaseSize from "./PickBaseSize";
 import PickSize from "./PickSize";
+import SaveFlower from "./SaveFlower";
 
 const CreateFlower = () => {
   const [currentFlower, setCurrentFlower] = useState<TFlower>({
     petalCount: 8,
-    size: "1x",
+    size: "2x",
     petalColor: "hsla(254, 100%, 50%, 0.6)",
     baseColor: "#ffcc86",
     petalType: PetalData[0].value,
@@ -138,4 +139,5 @@ const getCreateFlowerSteps = ({
   <PickFlowerBaseColor setBaseColor={setBaseColor} />,
   <PickBaseSize baseFactor={baseFactor} setBaseFactor={setBaseFactor} />,
   <PickSize size={{ name: size, value: size }} setSize={setSize} />,
+  <SaveFlower />,
 ];

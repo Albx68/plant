@@ -9,7 +9,7 @@ const PickSize = ({
   setSize: (size: string) => void;
 }) => {
   return (
-    <div className=" grid place-items-center">
+    <div className="r">
       <div className="mt-4 flex flex-col items-center">
         <Point>6</Point>
         <p>Pick a size</p>
