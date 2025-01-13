@@ -14,6 +14,7 @@ import PickFlowerBaseColor from "./PickFlowerBaseColor";
 import PickBaseSize from "./PickBaseSize";
 import PickSize from "./PickSize";
 import SaveFlower from "./SaveFlower";
+import AddNote from "./AddNote";
 
 const CreateFlower = () => {
   const [currentFlower, setCurrentFlower] = useState<TFlower>({
@@ -139,5 +140,6 @@ const getCreateFlowerSteps = ({
   <PickFlowerBaseColor setBaseColor={setBaseColor} />,
   <PickBaseSize baseFactor={baseFactor} setBaseFactor={setBaseFactor} />,
   <PickSize size={{ name: size, value: size }} setSize={setSize} />,
+  <AddNote />,
   <SaveFlower />,
 ];
