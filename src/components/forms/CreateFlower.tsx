@@ -12,11 +12,12 @@ import PickPetalColor from "./PickPetalColor";
 import PickPetalCount from "./PickPetalCount";
 import PickFlowerBaseColor from "./PickFlowerBaseColor";
 import PickBaseSize from "./PickBaseSize";
+import PickSize from "./PickSize";
 
 const CreateFlower = () => {
   const [currentFlower, setCurrentFlower] = useState<TFlower>({
     petalCount: 8,
-    petalHeight: 100,
+    size: "1x",
     petalColor: "hsla(254, 100%, 50%, 0.6)",
     baseColor: "#ffcc86",
     petalType: PetalData[0].value,
@@ -74,6 +75,15 @@ const CreateFlower = () => {
     },
     [setCurrentFlower]
   );
+  const setSize = useCallback(
+    (size: number) => {
+      setCurrentFlower((prevState) => ({
+        ...prevState,
+        size: size,
+      }));
+    },
+    [setCurrentFlower]
+  );
   const createFlowerSteps = getCreateFlowerSteps({
     currentPetal,
     setCurrentPetal,
@@ -84,12 +94,13 @@ const CreateFlower = () => {
     setBaseColor,
     baseFactor: currentFlower.baseRadiusFactor,
     setBaseFactor,
+    setSize,
+    size: currentFlower.size,
   });
   return (
     <div className="flex flex-col items-center ">
       <h2 className="text-neutral-800">Create a New Flower</h2>
       <DefaultFlower {...currentFlower} />
-
       <AnyCarousel childrenArray={createFlowerSteps}></AnyCarousel>
     </div>
   );
@@ -107,6 +118,8 @@ const getCreateFlowerSteps = ({
   setBaseColor,
   baseFactor,
   setBaseFactor,
+  setSize,
+  size,
 }) => [
   <div>
     <div className="mt-4 flex flex-col items-center">
@@ -114,6 +127,7 @@ const getCreateFlowerSteps = ({
       <p>Pick petal shape</p>
     </div>
     <SingleSelect
+      className="grid grid-cols-4 gap-2 my-2"
       selected={currentPetal}
       setSelected={setCurrentPetal}
       data={PetalData}
@@ -123,4 +137,5 @@ const getCreateFlowerSteps = ({
   <PickPetalColor setPetalColor={setPetalColor} />,
   <PickFlowerBaseColor setBaseColor={setBaseColor} />,
   <PickBaseSize baseFactor={baseFactor} setBaseFactor={setBaseFactor} />,
+  <PickSize size={{ name: size, value: size }} setSize={setSize} />,
 ];

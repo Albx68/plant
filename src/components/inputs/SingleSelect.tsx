@@ -11,17 +11,19 @@ type TSingleSelect<T> = {
   selected: TDataPoint<T>;
   setSelected: (T: T) => void;
   data: TDataPoint<T>[];
+  className: string;
 };
 
 const SingleSelect = <T,>({
   selected,
   setSelected,
   data,
+  className,
 }: TSingleSelect<T>): JSX.Element => {
   const options = data.map((option) => {
     const flowerData: TFlower = {
       petalType: option.value as TPetal,
-      petalHeight: 30,
+      size: "1x",
       petalColor: "pink",
       baseColor: "yellow",
       baseRadiusFactor: 0,
@@ -33,10 +35,9 @@ const SingleSelect = <T,>({
         key={option.name}
         onClick={() => setSelected(option.value)}
         className={cn(
-          "relative  rounded-xl cursor-pointer p-2 border-2 border-neutral-700 shadow-lg",
+          "relative rounded-xl cursor-pointer p-2 border-2 border-neutral-700 shadow-lg ",
           {
-            "border-neutral-700 bg-gradient-to-r from-rose-100 to-rose-200 ":
-              isSelected,
+            "border-neutral-700 bg-rose-200 ": isSelected,
           }
         )}
       >
@@ -49,9 +50,7 @@ const SingleSelect = <T,>({
       </div>
     );
   });
-  return (
-    <div className="grid gap-2 justify-center my-2 grid-cols-4 ">{options}</div>
-  );
+  return <div className={className}>{options}</div>;
 };
 
 export default SingleSelect;

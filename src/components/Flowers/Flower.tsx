@@ -1,17 +1,17 @@
 import { getPetalPaths } from "../../utils/helpers/path";
-import { TFlower } from "../../utils/types/Flower";
+import { TFlower, TSize } from "../../utils/types/Flower";
 
 const DefaultFlower = ({
   petalCount,
-  petalHeight,
+  size,
   petalColor = "pink",
   baseColor = "yellow",
   petalType = "flower",
   baseRadiusFactor = 4, //higher number = smaller radius
 }: TFlower) => {
-  const pad = 20;
+  const pad = 40;
   const angleStep = 360 / petalCount; // Angle between petals
-
+  const petalHeight = getPetalHeight(size);
   // Generate the path for a single petal
   const path = getPetalPaths({ type: petalType, petalHeight });
   return (
@@ -50,3 +50,20 @@ const DefaultFlower = ({
 };
 
 export default DefaultFlower;
+
+const getPetalHeight = (size: TSize) => {
+  switch (size) {
+    case "0.25x":
+      return 10;
+    case "0.5x":
+      return 20;
+    case "1x":
+      return 50;
+    case "2x":
+      return 100;
+    case "3x":
+      return 150;
+    default:
+      return 50;
+  }
+};
