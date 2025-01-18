@@ -1,8 +1,13 @@
+import { useState } from "react";
 import "./App.css";
 import Flower from "./components/flowers/Flower";
 import CreateFlower from "./components/forms/CreateFlower";
 import { TFlower } from "./utils/types/Flower";
+import { cn } from "./utils/helpers/cn";
+import YourBag from "./components/screens/YourBag";
+import Garden from "./components/screens/Garden";
 
+type TScreen = "🐞" | "🌼" | "🌱";
 // const flowerData: TFlower[] = [
 //   {
 //     petalCount: 5,
@@ -29,15 +34,54 @@ import { TFlower } from "./utils/types/Flower";
 //   },
 // ];
 function App() {
+  const [screen, setScreen] = useState<{ title: string; value: TScreen }>({
+    title: "Garden 🐞",
+    value: "🌼",
+  });
+
+  const getScreen = () => {
+    switch (screen.value) {
+      case "🐞":
+        return <Garden />;
+      case "🌼":
+        return <CreateFlower />;
+
+      case "🌱":
+        return <YourBag />;
+    }
+  };
+  const currentScreen = getScreen();
+  const screens: { title: string; value: TScreen }[] = [
+    {
+      title: "Garden 🐞",
+      value: "🐞",
+    },
+    { title: "Create 🌼", value: "🌼" },
+    { title: "Bag 🌱", value: "🌱" },
+  ];
   return (
-    <>
-      <div className="flex flex-wrap text-neutral-800 ">
-        <CreateFlower />
-        {/* {flowerData?.map((flower) => (
-          <Flower {...flower} />
-        ))} */}
-      </div>
-    </>
+    <div className="text-neutral-800">
+      {/* <div className="sticky left-0 bottom-0 flex gap-2 items-center justify-center bg-emerald-50 w-screen h-[100px] ">
+        {screens?.map((curr) => {
+          const isSelected = curr.value === screen.value;
+          return (
+            <div
+              key={curr.title}
+              className={cn(
+                "cursor-pointer py-2 px-4 rounded-3xl text-neutral-500 hover:text-neutral-900 border-2 border-neutral-300 hover:border-emerald-500",
+                {
+                  "text-neutral-900  border-2 border-emerald-700": isSelected,
+                }
+              )}
+              onClick={() => setScreen(curr)}
+            >
+              {curr.title}
+            </div>
+          );
+        })}
+      </div> */}
+      <div className="flex flex-wrap ">{currentScreen}</div>
+    </div>
   );
 }
 
@@ -46,93 +90,173 @@ export default App;
 export const flowerData: TFlower[] = [
   {
     petalCount: 7, // Roses typically have many petals
-    petalHeight: 100,
     petalColor: "lavender", // Classic rose pink
-    strokeColor: "#222", // A darker pink for contrast
     baseColor: "#dffddf", // Dark green for the stem
     petalType: "tulip",
     baseRadiusFactor: 4,
+    size: "2x",
   },
   {
     petalCount: 7, // Roses typically have many petals
-    petalHeight: 120,
     petalColor: "lavender", // Classic rose pink
-    strokeColor: "#222", // A darker pink for contrast
     baseColor: "#dffddf", // Dark green for the stem
     petalType: "tulip",
     baseRadiusFactor: 4,
+    size: "2x",
   },
   {
     petalCount: 7, // Roses typically have many petals
-    petalHeight: 100,
     petalColor: "lavender", // Classic rose pink
-    strokeColor: "#222", // A darker pink for contrast
     baseColor: "#dffddf", // Dark green for the stem
     petalType: "tulip",
     baseRadiusFactor: 4,
+    size: "3x",
   },
   {
     petalCount: 18, // Roses typically have many petals
-    petalHeight: 100,
     petalColor: "#ff3865", // Classic rose pink
-    strokeColor: "#222", // A darker pink for contrast
     baseColor: "#dffddf", // Dark green for the stem
     petalType: "daisy",
     baseRadiusFactor: 3,
+    size: "3x",
   },
   {
     petalCount: 18, // Roses typically have many petals
-    petalHeight: 100,
     petalColor: "#ff3865", // Classic rose pink
-    strokeColor: "#222", // A darker pink for contrast
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "daisy",
+    baseRadiusFactor: 3,
+    size: "3x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "daisy",
+    baseRadiusFactor: 3,
+    size: "2x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "daisy",
+    baseRadiusFactor: 3,
+    size: "2x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
     baseColor: "#dffddf", // Dark green for the stem
     petalType: "lily",
     baseRadiusFactor: 3,
+    size: "2x",
   },
   {
     petalCount: 6, // Roses typically have many petals
-    petalHeight: 100,
     petalColor: "#ff3865", // Classic rose pink
-    strokeColor: "#222", // A darker pink for contrast
     baseColor: "#dffddf", // Dark green for the stem
     petalType: "heart",
     baseRadiusFactor: 4,
+    size: "2x",
   },
-  {
-    petalCount: 6, // Roses typically have many petals
-    petalHeight: 100,
-    petalColor: "#ff3865", // Classic rose pink
-    strokeColor: "#222", // A darker pink for contrast
-    baseColor: "#dffddf", // Dark green for the stem
-    petalType: "heart",
-    baseRadiusFactor: 4,
-  },
-  {
-    petalCount: 6, // Roses typically have many petals
-    petalHeight: 100,
-    petalColor: "#ff3865", // Classic rose pink
-    strokeColor: "#222", // A darker pink for contrast
-    baseColor: "#dffddf", // Dark green for the stem
-    petalType: "heart",
-    baseRadiusFactor: 4,
-  },
-  {
-    petalCount: 18, // Roses typically have many petals
-    petalHeight: 100,
-    petalColor: "#dffddf", // Classic rose pink
-    strokeColor: "#66df66", // A darker pink for contrast
-    baseColor: "#11ff99", // Dark green for the stem
-    petalType: "daisy",
-    baseRadiusFactor: 2,
-  },
+
   {
     petalCount: 8, // Roses typically have many petals
-    petalHeight: 100,
     petalColor: "#dffddf", // Classic rose pink
-    strokeColor: "#000", // A darker pink for contrast
     baseColor: "#11ff99", // Dark green for the stem
     petalType: "heart",
     baseRadiusFactor: 10,
+    size: "2x",
+  },
+  {
+    petalCount: 7, // Roses typically have many petals
+    petalColor: "lavender", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "tulip",
+    baseRadiusFactor: 4,
+    size: "2x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "daisy",
+    baseRadiusFactor: 3,
+    size: "2x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "lily",
+    baseRadiusFactor: 3,
+    size: "2x",
+  },
+  {
+    petalCount: 6, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "heart",
+    baseRadiusFactor: 4,
+    size: "2x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "daisy",
+    baseRadiusFactor: 3,
+    size: "2x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "lily",
+    baseRadiusFactor: 3,
+    size: "1x",
+  },
+  {
+    petalCount: 6, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "heart",
+    baseRadiusFactor: 4,
+    size: "1x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "daisy",
+    baseRadiusFactor: 3,
+    size: "1x",
+  },
+  {
+    petalCount: 18, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "lily",
+    baseRadiusFactor: 3,
+    size: "2x",
+  },
+  {
+    petalCount: 6, // Roses typically have many petals
+    petalColor: "#ff3865", // Classic rose pink
+    baseColor: "#dffddf", // Dark green for the stem
+    petalType: "heart",
+    baseRadiusFactor: 4,
+    size: "3x",
+  },
+
+  {
+    petalCount: 8, // Roses typically have many petals
+    petalColor: "#dffddf", // Classic rose pink
+    baseColor: "#11ff99", // Dark green for the stem
+    petalType: "heart",
+    baseRadiusFactor: 10,
+    size: "1x",
   },
 ];
 

@@ -1,3 +1,4 @@
+import { cn } from "../../utils/helpers/cn";
 import { getPetalPaths } from "../../utils/helpers/path";
 import { TFlower, TSize } from "../../utils/types/Flower";
 
@@ -22,6 +23,7 @@ const DefaultFlower = ({
         petalHeight * 2 + pad * 2
       } ${petalHeight * 2 + pad * 2}`}
       xmlns="http://www.w3.org/2000/svg"
+      // className={cn("border-2 border-neutral-300")}
     >
       {Array.from({ length: petalCount }).map((_, index) => (
         <path
