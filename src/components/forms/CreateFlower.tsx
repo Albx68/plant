@@ -13,7 +13,7 @@ import PickBaseSize from "./PickBaseSize";
 import PickSize from "./PickSize";
 import SaveFlower from "./SaveFlower";
 import AddNote from "./AddNote";
-import DefaultFlower from "../flowers/Flower";
+import DefaultFlower from "../flowers/DefaultFlower";
 
 const CreateFlower = () => {
   const [currentFlower, setCurrentFlower] = useState<TFlower>({
@@ -102,7 +102,7 @@ const CreateFlower = () => {
     <div className="flex flex-col items-center ">
       <h2 className="text-neutral-800">Create a New Flower</h2>
       <DefaultFlower {...currentFlower} />
-      {/* <AnyCarousel childrenArray={createFlowerSteps}></AnyCarousel> */}
+      <AnyCarousel childrenArray={createFlowerSteps}></AnyCarousel>
     </div>
   );
 };

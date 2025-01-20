@@ -18,10 +18,11 @@ const DefaultFlower = ({
     <svg
       width={petalHeight * 2}
       height={petalHeight * 2}
-      viewBox={`${-petalHeight - pad} ${-petalHeight - pad} ${petalHeight * 2 + pad * 2
-        } ${petalHeight * 2 + pad * 2}`}
+      viewBox={`${-petalHeight - pad} ${-petalHeight - pad} ${
+        petalHeight * 2 + pad * 2
+      } ${petalHeight * 2 + pad * 2}`}
       xmlns="http://www.w3.org/2000/svg"
-    // className={cn("border-2 border-neutral-300")}
+      // className={cn("border-2 border-neutral-300")}
     >
       {Array.from({ length: petalCount }).map((_, index) => (
         <path
