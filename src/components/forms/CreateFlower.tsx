@@ -6,8 +6,6 @@ import PetalData from "../../utils/constants/PetalData";
 import { TPetal } from "../../utils/types/Path";
 import Point from "../miscallaneous/Point";
 import AnyCarousel from "../carousels/AnyCarousel";
-import DialSlider from "../inputs/DialSlider";
-import { HexColorPicker, HslaColorPicker } from "react-colorful";
 import PickPetalColor from "./PickPetalColor";
 import PickPetalCount from "./PickPetalCount";
 import PickFlowerBaseColor from "./PickFlowerBaseColor";
