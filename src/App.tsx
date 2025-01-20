@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useState } from "react";
 import "./App.css";
 import CreateFlower from "./components/forms/CreateFlower";
@@ -32,23 +33,23 @@ type TScreen = "🐞" | "🌼" | "🌱";
 //   },
 // ];
 function App() {
-  const [screen,] = useState<{ title: string; value: TScreen }>({
-    title: "Garden 🐞",
-    value: "🌼",
-  });
+  // const [screen,] = useState<{ title: string; value: TScreen }>({
+  //   title: "Garden 🐞",
+  //   value: "🌼",
+  // });
 
-  const getScreen = () => {
-    switch (screen.value) {
-      case "🐞":
-        return <Garden />;
-      case "🌼":
-        return <CreateFlower />;
-
-      case "🌱":
-        return <YourBag />;
-    }
-  };
-  const currentScreen = getScreen();
+  // const getScreen = () => {
+  //   switch (screen.value) {
+  //     case "🐞":
+  //       return <Garden />;
+  //     case "🌼":
+  //       return <CreateFlower />;
+  //
+  //     case "🌱":
+  //       return <YourBag />;
+  //   }
+  // };
+  // const currentScreen = getScreen();
   // const screens: { title: string; value: TScreen }[] = [
   //   {
   //     title: "Garden 🐞",
@@ -78,7 +79,7 @@ function App() {
           );
         })}
       </div> */}
-      <div className="flex flex-wrap ">{currentScreen}</div>
+      <div className="flex flex-wrap "><CreateFlower /></div>
     </div>
   );
 }
