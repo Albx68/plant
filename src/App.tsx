@@ -1,10 +1,10 @@
 //@ts-nocheck
 import { useState } from "react";
 import "./App.css";
-import CreateFlower from "./components/forms/CreateFlower";
 import { TFlower } from "./utils/types/Flower";
 import YourBag from "./components/screens/YourBag";
 import Garden from "./components/screens/Garden";
+import CreateFlower from "./components/forms/CreateFlower";
 
 type TScreen = "🐞" | "🌼" | "🌱";
 // const flowerData: TFlower[] = [
@@ -33,7 +33,7 @@ type TScreen = "🐞" | "🌼" | "🌱";
 //   },
 // ];
 function App() {
-  // const [screen,] = useState<{ title: string; value: TScreen }>({
+  // const [screen,] = useSta te<{ title: string; value: TScreen }>({
   //   title: "Garden 🐞",
   //   value: "🌼",
   // });
@@ -79,7 +79,9 @@ function App() {
           );
         })}
       </div> */}
-      <div className="flex flex-wrap "><CreateFlower /></div>
+      <div className="flex flex-wrap ">
+        <CreateFlower />
+      </div>
     </div>
   );
 }
