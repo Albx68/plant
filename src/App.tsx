@@ -79,7 +79,9 @@ function App() {
           );
         })}
       </div> */}
-      <div className="flex flex-wrap ">{/* <CreateFlower /> */}</div>
+      <div className="flex flex-wrap ">
+        <CreateFlower />
+      </div>
     </div>
   );
 }

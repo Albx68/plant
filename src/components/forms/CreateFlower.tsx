@@ -102,7 +102,7 @@ const CreateFlower = () => {
     <div className="flex flex-col items-center ">
       <h2 className="text-neutral-800">Create a New Flower</h2>
       <DefaultFlower {...currentFlower} />
-      <AnyCarousel childrenArray={createFlowerSteps}></AnyCarousel>
+      {/* <AnyCarousel childrenArray={createFlowerSteps}></AnyCarousel> */}
     </div>
   );
 };
