@@ -1,12 +1,12 @@
 //@ts-nocheck
-import { useState } from "react";
+// import { useState } from "react";
 import "./App.css";
 import { TFlower } from "./utils/types/Flower";
-import YourBag from "./components/screens/YourBag";
-import Garden from "./components/screens/Garden";
+// import YourBag from "./components/screens/YourBag";
+// import Garden from "./components/screens/Garden";
 import CreateFlower from "./components/forms/CreateFlower";
 
-type TScreen = "🐞" | "🌼" | "🌱";
+// type TScreen = "🐞" | "🌼" | "🌱";
 // const flowerData: TFlower[] = [
 //   {
 //     petalCount: 5,
@@ -79,9 +79,7 @@ function App() {
           );
         })}
       </div> */}
-      <div className="flex flex-wrap ">
-        <CreateFlower />
-      </div>
+      <div className="flex flex-wrap ">{/* <CreateFlower /> */}</div>
     </div>
   );
 }
