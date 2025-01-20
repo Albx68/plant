@@ -99,7 +99,7 @@ const CreateFlower = () => {
     size: currentFlower.size,
   });
   return (
-    <div className="flex flex-col items-center ">
+    <div className="flex flex-col items-center p-4">
       <h2 className="text-neutral-800">Create a New Flower</h2>
       <DefaultFlower {...currentFlower} />
       <AnyCarousel childrenArray={createFlowerSteps}></AnyCarousel>
