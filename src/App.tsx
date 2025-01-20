@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Flower from "./components/flowers/Flower";
 import CreateFlower from "./components/forms/CreateFlower";
 import { TFlower } from "./utils/types/Flower";
-import { cn } from "./utils/helpers/cn";
 import YourBag from "./components/screens/YourBag";
 import Garden from "./components/screens/Garden";
 
@@ -34,7 +32,7 @@ type TScreen = "🐞" | "🌼" | "🌱";
 //   },
 // ];
 function App() {
-  const [screen, setScreen] = useState<{ title: string; value: TScreen }>({
+  const [screen,] = useState<{ title: string; value: TScreen }>({
     title: "Garden 🐞",
     value: "🌼",
   });
@@ -51,14 +49,14 @@ function App() {
     }
   };
   const currentScreen = getScreen();
-  const screens: { title: string; value: TScreen }[] = [
-    {
-      title: "Garden 🐞",
-      value: "🐞",
-    },
-    { title: "Create 🌼", value: "🌼" },
-    { title: "Bag 🌱", value: "🌱" },
-  ];
+  // const screens: { title: string; value: TScreen }[] = [
+  //   {
+  //     title: "Garden 🐞",
+  //     value: "🐞",
+  //   },
+  //   { title: "Create 🌼", value: "🌼" },
+  //   { title: "Bag 🌱", value: "🌱" },
+  // ];
   return (
     <div className="text-neutral-800">
       {/* <div className="sticky left-0 bottom-0 flex gap-2 items-center justify-center bg-emerald-50 w-screen h-[100px] ">

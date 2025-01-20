@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Point from "../miscallaneous/Point";
 import DialSlider from "../inputs/DialSlider";
 

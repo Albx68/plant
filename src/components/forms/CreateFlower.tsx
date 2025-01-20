@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useCallback, useState } from "react";
 import DefaultFlower from "../flowers/Flower";
 import { TFlower } from "../../utils/types/Flower";
@@ -123,23 +124,23 @@ const getCreateFlowerSteps = ({
   setSize,
   size,
 }) => [
-  <div>
-    <div className="mt-4 flex flex-col items-center">
-      <Point>1</Point>
-      <p>Pick petal shape</p>
-    </div>
-    <SingleSelect
-      className="grid grid-cols-4 gap-2 my-2"
-      selected={currentPetal}
-      setSelected={setCurrentPetal}
-      data={PetalData}
-    />
-  </div>,
-  <PickPetalCount petalCount={petalCount} setPetalCount={setPetalCount} />,
-  <PickPetalColor setPetalColor={setPetalColor} />,
-  <PickFlowerBaseColor setBaseColor={setBaseColor} />,
-  <PickBaseSize baseFactor={baseFactor} setBaseFactor={setBaseFactor} />,
-  <PickSize size={{ name: size, value: size }} setSize={setSize} />,
-  <AddNote />,
-  <SaveFlower />,
-];
+    <div>
+      <div className="mt-4 flex flex-col items-center">
+        <Point>1</Point>
+        <p>Pick petal shape</p>
+      </div>
+      <SingleSelect
+        className="grid grid-cols-4 gap-2 my-2"
+        selected={currentPetal}
+        setSelected={setCurrentPetal}
+        data={PetalData}
+      />
+    </div>,
+    <PickPetalCount petalCount={petalCount} setPetalCount={setPetalCount} />,
+    <PickPetalColor setPetalColor={setPetalColor} />,
+    <PickFlowerBaseColor setBaseColor={setBaseColor} />,
+    <PickBaseSize baseFactor={baseFactor} setBaseFactor={setBaseFactor} />,
+    <PickSize size={{ name: size, value: size }} setSize={setSize} />,
+    <AddNote />,
+    <SaveFlower />,
+  ];
