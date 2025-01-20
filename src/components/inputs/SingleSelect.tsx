@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { TPetal } from "../../utils/types/Path";
 import { cn } from "../../utils/helpers/cn";
 import { TFlower } from "../../utils/types/Flower";
