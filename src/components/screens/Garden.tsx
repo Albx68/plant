@@ -1,11 +1,11 @@
 import { flowerData } from "../../App";
-import Flower from "../flowers/Flower";
+import DefaultFlower from "../flowers/Flower";
 
 const Garden = () => {
   return (
     <div className="flex flex-wrap">
       {flowerData?.map((flower) => (
-        <Flower {...flower} />
+        <DefaultFlower {...flower} />
       ))}
     </div>
   );

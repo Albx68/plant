@@ -1,7 +1,7 @@
 import { TPetal } from "../../utils/types/Path";
-import Flower from "../flowers/Flower";
 import { cn } from "../../utils/helpers/cn";
 import { TFlower } from "../../utils/types/Flower";
+import DefaultFlower from "../flowers/Flower";
 
 export type TDataPoint<T> = {
   name: string;
@@ -42,7 +42,7 @@ const SingleSelect = <T,>({
         )}
       >
         <div className="flex items-center justify-center">
-          <Flower {...flowerData} />
+          <DefaultFlower {...flowerData} />
         </div>
         <p className="absolute bottom-1 left-1/2 -translate-x-1/2">
           {option.name}
